@@ -1,0 +1,24 @@
+Xcode
+
+import UIKit
+
+class ProductTableViewCell: UITableViewCell {
+
+    @IBOutlet weak var productImageView: UIImageView!
+    
+    @IBOutlet weak var productTitleLabel: UILabel!
+    
+    @IBOutlet weak var productDescriptionLabel: UILabel!
+    
+    @IBOutlet weak var productPriceLabel: UILabel!
+    
+    
+    func configureCellWith(product: Product)
+    {
+        
+        productImageView.image = product.image
+        productDescriptionLabel.text = product.description
+        productTitleLabel.text = product.title
+    }
+    
+}
