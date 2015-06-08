@@ -1,0 +1,47 @@
+Xcode
+
+//
+//  AppleProductsTableViewController.swift
+//  Venddy
+//
+//  Created by Matt on 6/4/15.
+//  Copyright (c) 2015 Venddy Group. All rights reserved.
+//
+
+import UIKit
+
+class AppleProductsTableViewController: UITableViewController, UITableViewDelegate, UITableViewDataSource {
+
+    // MARK: - Data Source
+    
+    lazy var productLines: [ProductLine] = {
+        return ProductLine.productLines()
+        
+    }()
+
+    // MARK: - UITableViewDataSource
+
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return productLines.count
+        
+    }
+
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let productLine = productLines[section]
+        return productLine.products.count // number of products in section
+        
+    }
+
+  // indexPath: which section and which row
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("Product Cell", forIndexPath: indexPath) as! ProductTableViewCell
+        let productLine = productLines[indexPath.section]
+        let product = productLine.products[indexPath.row]
+        
+        cell.configureCellWith(product)
+        
+        
+
+        return cell
+    }
+   
